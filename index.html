@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dhruv Mehta — Game Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Dhruv Mehta — Unity/C# game developer focused on physics-based simulations and educational games." />
+  <meta name="author" content="Dhruv Mehta" />
+  <meta property="og:title" content="Dhruv Mehta — Game Developer" />
+  <meta property="og:description" content="Unity/C# · Physics-based simulations · 2D & 3D games" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-image.png" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" href="assets/favicon.png" />
+  <style>
+    :root {
+      --bg: #0b1020;        /* deep navy */
+      --panel: #121a33;     /* card background */
+      --text: #e5e7eb;      /* light text */
+      --muted: #a5b4fc;     /* accents */
+      --accent: #60a5fa;    /* links/buttons */
+      --chip: #1f2a4d;      /* tag pill */
+      --border: rgba(255,255,255,0.08);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% -10%, #16213e 0%, transparent 60%),
+                  radial-gradient(800px 600px at 100% 20%, #111827 0%, transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px);
+      background: linear-gradient(to bottom, rgba(11,16,32,0.85), rgba(11,16,32,0.35));
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { font-weight: 700; letter-spacing: 0.4px; }
+    .nav a { margin-left: 16px; }
+    .hero { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; align-items: center; padding: 48px 0 24px; }
+    .hero-card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .pill { display: inline-block; background: var(--chip); color: #c7d2fe; padding: 6px 12px; border-radius: 999px; font-size: 12px; letter-spacing: 0.3px; }
+    h1 { font-size: clamp(28px, 3.5vw, 42px); margin: 12px 0 8px; line-height: 1.15; }
+    .subtitle { color: #cbd5e1; font-size: clamp(14px, 2vw, 18px); }
+    .cta { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); background: #0f172a; color: var(--text); text-decoration: none; box-shadow: var(--shadow); }
+    .btn.primary { background: linear-gradient(135deg, #2563eb, #06b6d4); border: none; }
+    .btn:hover { transform: translateY(-1px); transition: transform .15s ease; text-decoration: none; }
+
+    /* Sections */
+    section { padding: 32px 0; }
+    .section-title { font-size: 20px; letter-spacing: 0.3px; margin-bottom: 16px; color: #dbeafe; }
+
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .card { grid-column: span 12; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .card-inner { padding: 18px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .tags .tag { background: var(--chip); color: #bfdbfe; padding: 4px 10px; border-radius: 999px; font-size: 12px; }
+
+    /* Project cards */
+    .project { display: grid; grid-template-columns: 1fr 1fr; }
+    .project .media { background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(14,165,233,0.2)); min-height: 180px; display: grid; place-items: center; border-bottom: 1px solid var(--border); }
+    .project .media small { opacity: 0.8; }
+    .project .body { padding: 18px; }
+    .project h3 { margin: 0 0 4px; }
+    .project p { margin: 6px 0 10px; color: #d1d5db; }
+    .links a { margin-right: 8px; }
+
+    /* Two-column skills */
+    .cols { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 14px; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 18px 0 32px; color: #cbd5e1; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .project { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Dhruv Mehta</div>
+      <nav class="mono">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-card">
+        <span class="pill">Unity · C# · Physics-based Sims</span>
+        <h1>Game Developer building engaging <em>2D/3D experiences</em> and <em>realistic simulations</em>.</h1>
+        <p class="subtitle">I design performant systems, replay tooling, and playful learning mechanics. Currently focused on Unity/C# with strong fundamentals in DSA and gameplay systems.</p>
+        <div class="cta">
+          <a class="btn primary" href="assets/Dhruv_Mehta_Resume.pdf" download>Download Resume (PDF)</a>
+          <a class="btn" href="https://www.linkedin.com/in/dhruv-mehta-117210260" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/dhruvmehta3107" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="row">
+          <div class="tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+            <span class="tag">C++</span>
+            <span class="tag">DOTween</span>
+            <span class="tag">Photoshop</span>
+            <span class="tag">Blender</span>
+          </div>
+        </div>
+        <div style="margin-top:14px" class="mono">
+          <div>Based in Punjab, India</div>
+          <div>Open to Game Dev / SDE internships</div>
+          <div>Available: Remote or On-site</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+
+      <article class="card project">
+        <div class="media">
+          <small>Screenshot/GIF — add to <code>assets/celestial-odyssey.gif</code></small>
+        </div>
+        <div class="body">
+          <h3>Celestial Odyssey — 2D Space Exploration</h3>
+          <p>Designed and developed a 2D space game with interactive orbital mechanics, zero‑gravity physics, and creative mini‑games (planet coloring, jigsaw puzzles). Optimized asset loading and physics for smooth performance on low‑end systems.</p>
+          <div class="row tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+            <span class="tag">2D</span>
+            <span class="tag">Education</span>
+          </div>
+          <div class="links" style="margin-top:10px">
+            <a href="#" target="_blank" rel="noopener">Play Demo</a>
+            <a href="#" target="_blank" rel="noopener">GitHub Repo</a>
+            <a href="#" target="_blank" rel="noopener">Design Notes</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project" style="margin-top:16px">
+        <div class="media">
+          <small>Screenshot/GIF — add to <code>assets/inertiax.gif</code></small>
+        </div>
+        <div class="body">
+          <h3>InertiaX — 3D Physics‑Based Car Simulation</h3>
+          <p>Built realistic vehicle dynamics with custom motor, steering, downforce and slip‑angle detection. Implemented frame‑accurate replays and ghost runs, stable camera tracking, and modular systems (minimap, lap timing, wind simulation, debug overlay).</p>
+          <div class="row tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+            <span class="tag">3D</span>
+            <span class="tag">Telemetry</span>
+          </div>
+          <div class="links" style="margin-top:10px">
+            <a href="#" target="_blank" rel="noopener">Play Demo</a>
+            <a href="#" target="_blank" rel="noopener">GitHub Repo</a>
+            <a href="#" target="_blank" rel="noopener">Technical Write‑up</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="card card-inner">
+        <div class="cols">
+          <div>
+            <strong>Programming</strong>
+            <div class="mono">C#, C++, Python, Java</div>
+          </div>
+          <div>
+            <strong>Game Dev & Tools</strong>
+            <div class="mono">Unity, DOTween, Blender, Photoshop, Visual Studio, Git</div>
+          </div>
+          <div>
+            <strong>Web & Databases</strong>
+            <div class="mono">HTML, CSS, JavaScript, React, MongoDB, MySQL</div>
+          </div>
+          <div>
+            <strong>Foundations</strong>
+            <div class="mono">Data Structures & Algorithms, OOP, Gameplay Systems</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="card card-inner">
+        <p>I'm a 3rd‑year B.E. CSE student at Chitkara University with a focus on building performant game systems and learning experiences. I enjoy turning tricky mechanics (orbits, replays, telemetry) into polished, fun interactions. Outside of coding, I explore 3D art workflows and UI motion.</p>
+        <p class="mono">Smart India Hackathon 2024 • EA SE & PM virtual programs • 250+ DSA problems</p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="card card-inner">
+        <div class="mono">
+          <div>Email: <a href="mailto:dhruvmehta7720@gmail.com">dhruvmehta7720@gmail.com</a></div>
+          <div>LinkedIn: <a href="https://www.linkedin.com/in/dhruv-mehta-117210260" target="_blank" rel="noopener">linkedin.com/in/dhruv-mehta-117210260</a></div>
+          <div>GitHub: <a href="https://github.com/dhruvmehta3107" target="_blank" rel="noopener">github.com/dhruvmehta3107</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="mono">© <span id="y"></span> Dhruv Mehta · Built with GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href.length > 1) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
